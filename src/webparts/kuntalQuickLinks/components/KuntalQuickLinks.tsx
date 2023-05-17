@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styles from './KuntalQuickLinks.module.scss';
 import { IKuntalQuickLinksProps } from './IKuntalQuickLinksProps';
-console.log(this.props.site)
 
 
 
