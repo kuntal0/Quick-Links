@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "16.13.2",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.9.1"
+    },
+    "version": "1.17.1",
+    "libraryName": "kuntal-quick-links",
+    "libraryId": "1574e48f-87eb-440b-845f-4be1be164e55",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "Kuntal Quick Links",
+    "solutionShortDescription": "Kuntal Quick Links description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "kuntal-quick-links-client-side-solution",
+    "id": "1574e48f-87eb-440b-845f-4be1be164e55",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.17.1"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "Kuntal Quick Links description"
+      },
+      "longDescription": {
+        "default": "Kuntal Quick Links description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "kuntal-quick-links Feature",
+        "description": "The feature that activates elements of the kuntal-quick-links solution.",
+        "id": "3e1e5f3b-c89b-4236-b048-d2a5ab95c860",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/kuntal-quick-links.sppkg"
+  }
+}

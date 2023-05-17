@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "kuntal-quick-links-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/kuntalQuickLinks/KuntalQuickLinksWebPart.js",
+          "manifest": "./src/webparts/kuntalQuickLinks/KuntalQuickLinksWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "KuntalQuickLinksWebPartStrings": "lib/webparts/kuntalQuickLinks/loc/{locale}.js"
+  }
+}
