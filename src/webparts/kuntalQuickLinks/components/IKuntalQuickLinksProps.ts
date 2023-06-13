@@ -1,9 +1,12 @@
+import { WebPartContext } from "@microsoft/sp-webpart-base";
+
 export interface IKuntalQuickLinksProps {
-  description: string;
-  isDarkTheme: boolean;
-  environmentMessage: string;
-  hasTeamsContext: boolean;
-  userDisplayName: string;
   //
-siteurl:string;
+  siteurl: string;
+  context: WebPartContext;
+  listName: string;
+  emptyMessage: string;
+  componentTitle: string;
+
+  numberOfColumsToShow: any;
 }

@@ -3,7 +3,8 @@ import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
 import {
   IPropertyPaneConfiguration,
-  PropertyPaneTextField
+  PropertyPaneTextField,
+  PropertyPaneDropdown,
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
@@ -13,25 +14,23 @@ import KuntalQuickLinks from './components/KuntalQuickLinks';
 import { IKuntalQuickLinksProps } from './components/IKuntalQuickLinksProps';
 
 export interface IKuntalQuickLinksWebPartProps {
-  description: string;
-  
+  listName: string;
+  emptyMessage: string;
+  componentTitle: string;
+  numberOfColumsToShow: any;
 }
 
 export default class KuntalQuickLinksWebPart extends BaseClientSideWebPart<IKuntalQuickLinksWebPartProps> {
-
-  private _isDarkTheme: boolean = false;
-  private _environmentMessage: string = '';
 
   public render(): void {
     const element: React.ReactElement<IKuntalQuickLinksProps> = React.createElement(
       KuntalQuickLinks,
       {
-        description: this.properties.description,
-        isDarkTheme: this._isDarkTheme,
-        environmentMessage: this._environmentMessage,
-        hasTeamsContext: !!this.context.sdks.microsoftTeams,
-        userDisplayName: this.context.pageContext.user.displayName,
-        siteurl:this.context.pageContext.web.absoluteUrl,
+        listName: this.properties.listName,
+        emptyMessage: this.properties.emptyMessage,
+        componentTitle: this.properties.componentTitle,
+        numberOfColumsToShow: this.properties.numberOfColumsToShow,
+        context: this.context,
       }
     );
 
@@ -40,7 +39,7 @@ export default class KuntalQuickLinksWebPart extends BaseClientSideWebPart<IKunt
 
   protected onInit(): Promise<void> {
     return this._getEnvironmentMessage().then(message => {
-      this._environmentMessage = message;
+      //this._environmentMessage = message;
     });
   }
 
@@ -77,7 +76,7 @@ export default class KuntalQuickLinksWebPart extends BaseClientSideWebPart<IKunt
       return;
     }
 
-    this._isDarkTheme = !!currentTheme.isInverted;
+    //this._isDarkTheme = !!currentTheme.isInverted;
     const {
       semanticColors
     } = currentTheme;
@@ -97,6 +96,13 @@ export default class KuntalQuickLinksWebPart extends BaseClientSideWebPart<IKunt
   protected get dataVersion(): Version {
     return Version.parse('1.0');
   }
+  protected get disableReactivePropertyChanges(): boolean {
+    return true;
+  }
+  protected onAfterPropertyPaneChangesApplied(): any {
+    ReactDom.unmountComponentAtNode(this.domElement);
+    this.render();
+  }
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     return {
@@ -109,8 +115,48 @@ export default class KuntalQuickLinksWebPart extends BaseClientSideWebPart<IKunt
             {
               groupName: strings.BasicGroupName,
               groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
+                PropertyPaneTextField("componentTitle", {
+                  label: "Component title",
+                }),
+
+                PropertyPaneTextField("listName", {
+                  label: "Enter a list name",
+                }),
+
+                PropertyPaneTextField("emptyMessage", {
+                  label: "Text, If no data available",
+                }),
+
+                PropertyPaneDropdown("numberOfColumsToShow", {
+                  label: "Number of colums to show",
+
+                  options: [
+                    {
+                      key: "1",
+
+                      text: "1 Columns",
+                    },
+
+                    {
+                      key: "2",
+
+                      text: "2 Columns",
+                    },
+
+                    {
+                      key: "3",
+
+                      text: "3 Columns",
+                    },
+                    {
+                      key: "4",
+
+                      text: "4 Columns",
+                    },
+                  ],
+
+                  selectedKey: "4",
+
                 })
               ]
             }
